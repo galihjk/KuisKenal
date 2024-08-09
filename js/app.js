@@ -1,13 +1,5 @@
 $(document).ready(function() {
-    // Array of function scripts to load
-    const functionScripts = [
-        'js/functions/stateManager.js',
-        'js/functions/startLongPolling.js',
-        'js/functions/displayMessages.js',
-        'js/functions/eventHandlers.js'
-    ];
 
-    // Function to load scripts dynamically
     function loadScripts(scripts, callback) {
         let index = 0;
 
@@ -29,11 +21,8 @@ $(document).ready(function() {
         loadNext();
     }
 
-    // Load all function scripts
     loadScripts(functionScripts, function() {
         console.log('All scripts loaded successfully.');
-
-        // Setup event handlers after all scripts are loaded
-        setupEventHandlers();
+        setupEventHandlers(); // Setup event handlers setelah semua script termuat
     });
 });

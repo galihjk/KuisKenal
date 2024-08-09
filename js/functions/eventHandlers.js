@@ -6,7 +6,7 @@ function setupEventHandlers() {
             return;
         }
 
-        $('#status').text('Starting').removeClass('text-secondary text-danger text-success').addClass('text-warning');
+        $('#status').text('Starting... Please send a message to yout bot.').removeClass('text-secondary text-danger text-success').addClass('text-warning');
         $('#startServer').prop('disabled', true);
         $('#botToken').prop('disabled', true);
         $('#stopServer').prop('disabled', false);

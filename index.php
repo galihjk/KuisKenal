@@ -23,8 +23,15 @@
             <ul id="messages" class="list-group"></ul>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const functionScripts = [<?php 
+        foreach(scandir("js/functions") as $f){
+            if(pathinfo($f, PATHINFO_EXTENSION) !== 'js') continue;
+            echo "'js/functions/$f',";
+        }
+        ?>];
+    </script>
     <script src="js/app.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

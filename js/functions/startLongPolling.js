@@ -1,4 +1,5 @@
 function startLongPolling(botToken) {
+    stateManager.set('botToken', botToken); // Simpan bot token ke stateManager
     let offset = 0;
 
     function poll() {
@@ -9,7 +10,7 @@ function startLongPolling(botToken) {
             method: 'GET',
             data: {
                 offset: offset,
-                timeout: 30 // Timeout 30 seconds
+                timeout: 30 // Timeout 30 detik
             },
             success: function(response) {
                 if (response.ok) {
@@ -18,14 +19,19 @@ function startLongPolling(botToken) {
                     const updates = response.result;
                     if (updates.length > 0) {
                         offset = updates[updates.length - 1].update_id + 1;
-                        displayMessages(updates);
+
+                        // Proses setiap update dengan handler yang ada di folder functions
+                        updates.forEach(update => {
+                            botHandler_text(update); // Jalankan botHandler_text
+                            // Anda bisa menambahkan handler lain di sini jika diperlukan
+                        });
                     }
                 } else {
                     handleError(response.description);
                 }
 
                 if (stateManager.get('polling')) {
-                    poll(); // Continue polling
+                    poll(); // Lanjutkan polling
                 }
             },
             error: function(xhr, status, error) {
