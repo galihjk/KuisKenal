@@ -22,7 +22,12 @@ function startLongPolling(botToken) {
 
                         // Proses setiap update dengan handler yang ada di folder functions
                         updates.forEach(update => {
-                            botHandler_text(update); // Jalankan botHandler_text
+                            if (update.message) {
+                                botHandler_text(update); // Jalankan botHandler_text
+                            }
+                            if (update.callback_query) {
+                                botHandler_CallbackQuery(update); // Jalankan botHandler_CallbackQuery
+                            }
                             // Anda bisa menambahkan handler lain di sini jika diperlukan
                         });
                     }
