@@ -9,11 +9,12 @@ function telegramAPI(method, params) {
         data: JSON.stringify(params),
         success: function(response) {
             if (!response.ok) {
-                console.error('Error from Telegram API:', response.description);
+                displayMessage('Error from Telegram API:', response.description, 'text-danger');
+
             }
         },
         error: function(xhr, status, error) {
-            console.error('AJAX Error:', error);
+            displayMessage('AJAX Error:', error, 'text-danger');
         }
     });
 }

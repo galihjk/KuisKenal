@@ -12,6 +12,6 @@ function botHandler_CallbackQuery(update) {
             show_alert: true
         });
     } else {
-        console.error('Unhandled callback query: ' + callbackData);
+        displayMessage('Unhandled callback query: ' + callbackData, 'text-warning');
     }
 }

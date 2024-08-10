@@ -14,21 +14,20 @@ function startLongPolling(botToken) {
             },
             success: function(response) {
                 if (response.ok) {
+                    displayMessage('Running', 'text-danger');
                     $('#status').text('Running').removeClass('text-warning text-danger').addClass('text-success');
 
                     const updates = response.result;
                     if (updates.length > 0) {
                         offset = updates[updates.length - 1].update_id + 1;
 
-                        // Proses setiap update dengan handler yang ada di folder functions
                         updates.forEach(update => {
                             if (update.message) {
-                                botHandler_text(update); // Jalankan botHandler_text
+                                botHandler_text(update);
                             }
                             if (update.callback_query) {
-                                botHandler_CallbackQuery(update); // Jalankan botHandler_CallbackQuery
+                                botHandler_CallbackQuery(update);
                             }
-                            // Anda bisa menambahkan handler lain di sini jika diperlukan
                         });
                     }
                 } else {
@@ -51,6 +50,9 @@ function startLongPolling(botToken) {
         $('#botToken').prop('disabled', false);
         $('#stopServer').prop('disabled', true);
         stateManager.set('polling', false);
+
+        // Menggunakan displayMessages untuk menampilkan error
+        displayMessage('Error: ' + errorMessage, 'text-danger');
     }
 
     poll();

@@ -18,11 +18,10 @@ function botHandler_text(update) {
 
     if (response) {
         if (response.action) {
-            // Jalankan fungsi action yang sesuai
             if (typeof window[response.action] === "function") {
                 window[response.action](chatId, firstName);
             } else {
-                console.error('Error: action function not defined for ' + response.action);
+                displayMessage('Error: action function not defined for ' + response.action, 'text-danger');
             }
         } else if (response.answer) {
             telegramAPI('sendMessage', {
@@ -31,6 +30,6 @@ function botHandler_text(update) {
             });
         }
     } else {
-        console.error('Unhandled text: ' + userMessage);
+        displayMessage('Unhandled text: ' + userMessage, 'text-warning');
     }
 }
