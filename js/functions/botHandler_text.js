@@ -12,14 +12,13 @@ function botHandler_text(update) {
 
     const userMessage = update.message.text.toLowerCase();
     const chatId = update.message.chat.id;
-    const firstName = update.message.from.first_name || 'User';
 
     const response = responses.find(r => r.text.toLowerCase() === userMessage);
 
     if (response) {
         if (response.action) {
             if (typeof window[response.action] === "function") {
-                window[response.action](chatId, firstName);
+                window[response.action](update);
             } else {
                 displayMessage('Error: action function not defined for ' + response.action, 'text-danger');
             }

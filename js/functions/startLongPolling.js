@@ -14,7 +14,6 @@ function startLongPolling(botToken) {
             },
             success: function(response) {
                 if (response.ok) {
-                    displayMessage('Running', 'text-danger');
                     $('#status').text('Running').removeClass('text-warning text-danger').addClass('text-success');
 
                     const updates = response.result;
