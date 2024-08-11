@@ -5,58 +5,54 @@ function botHandler_text_start(update) {
     }
 
     const chatId = update.message.chat.id;
+    const chatType = update.message.chat.type;
     const userId = update.message.from.id;
     const firstName = update.message.from.first_name;
-    const isGroupChat = update.message.chat.type !== 'private';
 
-    if (!isGroupChat) {
+    if (chatType === 'private') {
+        telegramAPI('sendMessage', { chat_id: chatId, text: 'Bot ini untuk bermain bersama teman dan perlu dimasukkan ke grup.' });
+        return;
+    }
+
+    let groupData = stateManager.get(`group_${chatId}`) || {
+        chatId: chatId,
+        isStarting: false,
+        isPlaying: false,
+        players: [],
+    };
+
+    if (groupData.isPlaying) {
+        telegramAPI('sendMessage', { chat_id: chatId, text: 'Permainan sedang berlangsung.' });
+        return;
+    }
+
+    if (groupData.isStarting) {
         telegramAPI('sendMessage', {
             chat_id: chatId,
-            text: "Bot ini hanya untuk bermain bersama teman. Masukkan bot ke dalam grup untuk bermain."
+            text: `${firstName}, Ayo join!`,
+            reply_to_message_id: groupData.message_id,
         });
         return;
     }
 
-    let groupData = stateManager.get(`group_${chatId}`);
-    
-    if (!groupData) {
-        groupData = {
-            chatid: chatId,
-            isStarting: false,
-            isPlaying: false,
-            players: []
-        };
+    groupData.isStarting = true;
+    groupData.players.push({ userId: userId, firstName: firstName });
+    groupData.countdown = STARTING_COUNTDOWN;
+
+    telegramAPI('sendMessage', {
+        chat_id: chatId,
+        text: `Permainan akan dimulai dalam ${groupData.countdown} detik, ayo join!\nPemain:\n${groupData.players.map(player => `[${player.firstName}](tg://user?id=${player.userId})`).join('\n')}`,
+        parse_mode: 'Markdown',
+        reply_markup: {
+            inline_keyboard: [
+                [{ text: 'Join', callback_data: 'join' }],
+                [{ text: 'Extend', callback_data: 'extend' }]
+            ]
+        }
+    }).then(response => {
+        // console.log(response);
+        groupData.message_id = response.result.message_id;
         stateManager.set(`group_${chatId}`, groupData);
-    }
-
-    if (groupData.isPlaying) {
-        telegramAPI('sendMessage', {
-            chat_id: chatId,
-            text: "Permainan sedang berlangsung."
-        });
-    } else if (groupData.isStarting) {
-        telegramAPI('sendMessage', {
-            chat_id: chatId,
-            text: "Kita sedang memulai permainan. Ayo bergabung!"
-        });
-    } else {
-        groupData.isStarting = true;
-        groupData.players.push({ userid: userId, first_name: firstName });
-        stateManager.set(`group_${chatId}`, groupData);
-
-        let playerList = groupData.players
-            .map(player => `[${player.first_name}](tg://user?id=${player.userid})`)
-            .join(', ');
-
-        telegramAPI('sendMessage', {
-            chat_id: chatId,
-            text: `${firstName} ingin memulai permainan. Ayo ikut!\n\nPemain: ${playerList}`,
-            parse_mode: "Markdown",
-            reply_markup: JSON.stringify({
-                inline_keyboard: [
-                    [{ text: "Join", callback_data: "join" }]
-                ]
-            })
-        });
-    }
+        countdown_start(chatId);
+    });
 }

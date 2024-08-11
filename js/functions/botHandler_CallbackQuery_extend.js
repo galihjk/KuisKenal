@@ -1,24 +1,13 @@
-function botHandler_CallbackQuery_join(callbackQuery) {
+function botHandler_CallbackQuery_extend(callbackQuery) {
     const chatId = callbackQuery.message.chat.id;
-    const userId = callbackQuery.from.id;
-    const firstName = callbackQuery.from.first_name;
     let groupData = stateManager.get(`group_${chatId}`);
 
-    if (groupData.players.some(player => player.userId === userId)) {
-        telegramAPI('answerCallbackQuery', {
-            callback_query_id: callbackQuery.id,
-            text: 'Anda sudah join',
-            show_alert: true
-        });
-        return;
-    }
-
-    groupData.players.push({ userId: userId, firstName: firstName });
+    groupData.countdown = EXTEND_COUNTDOWN;
     stateManager.set(`group_${chatId}`, groupData);
 
     telegramAPI('answerCallbackQuery', {
         callback_query_id: callbackQuery.id,
-        text: 'Berhasil join'
+        text: `Waktu diperpanjang menjadi ${EXTEND_COUNTDOWN} detik lagi.`
     });
 
     telegramAPI('editMessageText', {

@@ -6,6 +6,10 @@ function botHandler_text(update) {
             text: "/start",
             action: "botHandler_text_start"
         },
+        {
+            text: "/force_stop",
+            action: "botHandler_text_forceStop"
+        },
         { text: "/donate", answer: "Silakan donasi ke sini" },
         { text: "hai", answer: "Halo" },
     ];

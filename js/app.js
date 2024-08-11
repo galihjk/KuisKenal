@@ -1,3 +1,9 @@
+const STARTING_COUNTDOWN = 60; // Waktu mulai permainan dalam detik
+const EXTEND_COUNTDOWN = 90; // Waktu + perpanjangan untuk memulai permainan dalam detik
+const NOTIFICATION_INTERVAL = 15; // Interval untuk mengirim notifikasi detik
+const MINIMUM_PLAYER = 2; // jumlah pemain minimal
+
+
 $(document).ready(function() {
 
     function loadScripts(scripts, callback) {
