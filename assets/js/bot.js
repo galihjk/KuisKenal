@@ -7,7 +7,6 @@ function bot(method, params) {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         if(textStatus != 'abort'){
             sys_log_Send(`Error: ${textStatus} - ${errorThrown} - ${jqXHR.responseJSON?.description}`, "text-danger");
-            stopBot();
         }
     });
 }

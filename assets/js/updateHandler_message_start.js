@@ -8,7 +8,7 @@ function updateHandler_message_start(update) {
         if(message.text){
             if(message.text.startsWith("/start pil_")){
                 let my_playing_group = message.text.substring("/start pil_".length);
-                bot_sendMessage(chatId, "Pilih pertanyaan! Anda sedang bermain di "+my_playing_group);
+                game_pilihPertanyaan(my_playing_group,from);
             }
             else{
                 bot_sendMessage(chatId, "Bot ini untuk dimainkan di grup. Silakan tambahkan bot ini ke grup Anda.");
