@@ -1,10 +1,19 @@
-function game_start(update) {
-    const chatId = update.message.chat.id;
-    const from = update.message.from;
-    const isPrivate = update.message.chat.type === "private";
+function updateHandler_message_start(update) {
+    const message = update.message;
+    const chatId = message.chat.id;
+    const from = message.from;
+    const isPrivate = message.chat.type === "private";
 
     if (isPrivate) {
-        sys_log_Send("Bot ini untuk dimainkan di grup. Silakan tambahkan bot ini ke grup Anda.", "text-warning");
+        if(message.text){
+            if(message.text.startsWith("/start pil_")){
+                let my_playing_group = message.text.substring("/start pil_".length);
+                bot_sendMessage(chatId, "Pilih pertanyaan! Anda sedang bermain di "+my_playing_group);
+            }
+            else{
+                bot_sendMessage(chatId, "Bot ini untuk dimainkan di grup. Silakan tambahkan bot ini ke grup Anda.");
+            }
+        }
     } else {
         // Logika untuk grup
         if (!groups[chatId]) {
@@ -20,7 +29,7 @@ function game_start(update) {
         const group = groups[chatId];
 
         if (group.playing) {
-            bot_sendMessage(chatId, "Permainan sedang berlangsung.");
+            bot_sendMessage(chatId, "Permainan sedang berlangsung. Bila ingin menghentikan permainan, admin grup dapat menggunakan command /force_stop");
         } else if (group.starting) {
             bot_sendMessage(chatId, "Ayo join!", {reply_parameters: JSON.stringify({message_id:group.starting_message_id})});
         } else {

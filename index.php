@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Kuis Kenal</h1>
+        <h1 class="mt-5">Test</h1>
+        <!-- <h1 class="mt-5">Kuis Kenal</h1> -->
         <div id="bot-token-section" class="mb-4">
             <input type="text" id="bot-token" class="form-control" placeholder="Masukkan token bot">
             <button id="start-button" class="btn btn-success mt-2">Start</button>

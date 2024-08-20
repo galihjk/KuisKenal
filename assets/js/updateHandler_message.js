@@ -3,6 +3,6 @@ function updateHandler_message(update) {
     const chatId = message.chat.id;
 
     if (message.text.startsWith("/start")) {
-        game_start(update);
+        updateHandler_message_start(update);
     }
 }
