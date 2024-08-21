@@ -1,6 +1,6 @@
 function game_startCountdown(chatId) {
     const group = groups[chatId];
-    let playerList = group.players.map(player => `<a href='tg://user?id=${player.id}'>${player.first_name}</a>`).join("\n");
+    let playerList = group.players.map(player => helper_mentionPlayer(player.id, chatId)).join("\n");
 
     const interval = setInterval(() => {
         if (!group.starting || group.count_down <= 0) {

@@ -8,7 +8,7 @@ function game_startPlaying(chatId){
     group.currentTurnPlayer = group.turns.shift(); // Ambil pemain pertama
     let currentTurnPlayer = group.currentTurnPlayer;
     bot_sendMessage(chatId, 
-        `<a href='tg://user?id=${currentTurnPlayer.id}'>${currentTurnPlayer.first_name}</a>, silakan pilih pertanyaan!`, 
+        `${helper_mentionPlayer(currentTurnPlayer.id, chatId)} silakan pilih pertanyaan!`, 
         {
             reply_markup: JSON.stringify({
                 inline_keyboard: [

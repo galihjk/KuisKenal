@@ -37,7 +37,7 @@ function updateHandler_message_start(update) {
             group.starting = true;
             group.count_down = START_COUNTDOWN;
 
-            let playerList = group.players.map(player => `<a href='tg://user?id=${player.id}'>${player.first_name}</a>`).join("\n");
+            let playerList = group.players.map(player => helper_mentionPlayer(player.id, chatId)).join("\n");
 
             let messageText = `Permainan akan dimulai dalam ${group.count_down} detik. Ayo join!\nPemain:\n${playerList}`;
             bot_sendMessage(chatId, messageText, {
