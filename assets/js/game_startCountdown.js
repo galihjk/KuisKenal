@@ -1,8 +1,10 @@
 function game_startCountdown(chatId) {
     const group = groups[chatId];
-    let playerList = group.players.map(player => helper_mentionPlayer(player.id, chatId)).join("\n");
 
     const interval = setInterval(() => {
+        let playerList = group.players.map(player => helper_mentionPlayer(player.id, chatId)).join("\n");
+        // console.log('group.players',group.players,playerList);
+        // console.log('playerList',playerList);
         if (!group.starting || group.count_down <= 0) {
             clearInterval(interval);
             if (group.players.length < MIN_PLAYERS) {
@@ -11,8 +13,10 @@ function game_startCountdown(chatId) {
                 bot_sendMessage(chatId, `Mohon maaf, ${group.players.map(player => player.first_name).join(", ")}. Permainan batal karena kurang peserta.`);
                 group.players = [];
             } else {    
-                bot_sendMessage(chatId, "Permainan dimulai!\n"+playerList);
-                game_startPlaying(chatId);
+                bot_sendMessage(chatId, "Permainan dimulai!\n\n"+playerList+"\n\nBersiaplah!");
+                setTimeout(() => {
+                    game_startPlaying(chatId);
+                }, 3000);
             }
         } else {
             group.count_down--;
