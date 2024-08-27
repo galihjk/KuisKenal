@@ -24,11 +24,17 @@ function game_jawabPertanyaan(groupid,message){
         bot_sendMessage(chatId, "Yang harus menjawab adalah peserta lain selain Anda!");
         return;
     }
-    group.players.forEach(p => {
-        if(p.id != group.currentTurnPlayer.id){
-            waiting_private_answer[p.id] = groupid;
-            bot_sendMessage(p.id, group.q);
-        }
-    });
+    if(group.jawaban && group.jawaban[chatId]){
+        bot_sendMessage(chatId, "Anda sudah menjawab");
+        return;
+    }
+    waiting_private_answer[chatId] = groupid;
+    bot_sendMessage(chatId, group.q);
+    // group.players.forEach(p => {
+    //     if(p.id != group.currentTurnPlayer.id){
+    //         waiting_private_answer[p.id] = groupid;
+    //         bot_sendMessage(p.id, group.q);
+    //     }
+    // });
     
 }

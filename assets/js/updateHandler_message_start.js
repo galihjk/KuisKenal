@@ -14,6 +14,10 @@ function updateHandler_message_start(update) {
                 let my_playing_group = message.text.substring("/start jwb_".length);
                 game_jawabPertanyaan(my_playing_group,message);
             }
+            else if(message.text.startsWith("/start cekjwb_")){
+                let my_playing_group = message.text.substring("/start cekjwb_".length);
+                game_cekJawaban(my_playing_group,message);
+            }
             else{
                 bot_sendMessage(chatId, "Bot ini untuk dimainkan di grup. Silakan tambahkan bot ini ke grup Anda.");
             }

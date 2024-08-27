@@ -15,7 +15,7 @@ function sys_startLongPolling() {
             });
             setTimeout(() => {
                 sys_startLongPolling();
-            }, 100);
+            }, 400);
         } else {
             sys_stopBot();
             sys_log_Send(`Error in long polling: ${response.description}`, "text-danger");

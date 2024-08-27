@@ -8,5 +8,7 @@ function updateHandler_callbackQuery(update) {
         updateHandler_callbackQuery_extend(update);
     } else if (callbackData.startsWith("pilihq")) {
         updateHandler_callbackQuery_pilihq(update);
+    }else if (callbackData.startsWith("cnfrmJwb")) {
+        updateHandler_callbackQuery_cnfrmJwb(update);
     }
 }

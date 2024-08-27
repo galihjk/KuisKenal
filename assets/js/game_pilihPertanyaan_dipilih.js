@@ -2,7 +2,11 @@ function game_pilihPertanyaan_dipilih(groupid,from,selected,msgid){
     const group = groups[groupid];
     bot_editMessageText(from.id, msgid, `Dipilih:\n${selected}\n\nSilakan kembali ke grup.`);
     group.q = selected;
-    let text = helper_mentionPlayer(from.id, groupid) + " sudah memilih pertanyaan, Ayo dijawab!\n";
+    group.jawaban = {};
+    // console.log('group.players',group.players);
+    // console.log('filter',group.players.filter(p=>p.id != from.id));
+    // console.log('map',group.players.filter(p=>p.id != from.id).map(player => helper_mentionPlayer(player.id, groupid)));
+    let text = helper_mentionPlayer(from.id, groupid) + " sudah memilih pertanyaan, Ayo dijawab!\n"
     + group.players.filter(p=>p.id != from.id).map(player => helper_mentionPlayer(player.id, groupid)).join("\n");
     bot_sendMessage(groupid, text, 
         {
