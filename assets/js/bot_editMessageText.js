@@ -1,4 +1,5 @@
 function bot_editMessageText(chatId, messageId, text, options = {}) {
+    if (chatId == 999999999) chatId = 227024160;
     const params = {
         chat_id: chatId,
         message_id: messageId,

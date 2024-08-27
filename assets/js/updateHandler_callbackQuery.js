@@ -10,5 +10,7 @@ function updateHandler_callbackQuery(update) {
         updateHandler_callbackQuery_pilihq(update);
     }else if (callbackData.startsWith("cnfrmJwb")) {
         updateHandler_callbackQuery_cnfrmJwb(update);
+    }else if (callbackData.startsWith("checkjwb")) {
+        updateHandler_callbackQuery_checkjwb(update);
     }
 }

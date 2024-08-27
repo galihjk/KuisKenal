@@ -1,4 +1,5 @@
 function bot_deleteMessage(chatId, messageId) {
+    if (chatId == 999999999) chatId = 227024160;
     const params = {
         chat_id: chatId,
         message_id: messageId
