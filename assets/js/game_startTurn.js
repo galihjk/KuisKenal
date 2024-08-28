@@ -1,7 +1,14 @@
 function game_startTurn(chatId){
     const group = groups[chatId];
     if(!group.turns || !group.turns.length){
-        bot_sendMessage(chatId,"Permainan Berakhir!");
+        groups[chatId] = {
+            starting: false,
+            playing: false,
+            starting_message_id: null,
+            players: [],
+            count_down: 0
+        };
+        bot_sendMessage(chatId,"Permainan Berakhir! /start");
         return;
     }
     group.currentTurnPlayer = group.turns.shift(); // Ambil pemain pertama

@@ -10,7 +10,7 @@ function game_startCountdown(chatId) {
             if (group.players.length < MIN_PLAYERS) {
                 group.starting = false;
                 bot_editMessageText(chatId, group.starting_message_id, `Permainan dibatalkan karena jumlah pemain kurang`);
-                bot_sendMessage(chatId, `Mohon maaf, ${group.players.map(player => player.first_name).join(", ")}. Permainan batal karena kurang peserta.`);
+                bot_sendMessage(chatId, `Mohon maaf, ${group.players.map(player => helper_mentionPlayer(player.id, chatId)).join(", ")}. Permainan batal karena kurang peserta.`);
                 group.players = [];
             } else {    
                 bot_sendMessage(chatId, "Permainan dimulai!\n\n"+playerList+"\n\nBersiaplah!");

@@ -29,7 +29,7 @@ function game_cekJawaban_done(groupid,message){
             })
         }
     });
-    group.cekjawaban = [];
+    group.cekjawaban = null;
     if(!pemain_benar.length){
         text_to_send += "TIDAK ADA";
     }
