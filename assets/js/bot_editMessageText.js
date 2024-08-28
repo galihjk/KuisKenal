@@ -10,7 +10,7 @@ function bot_editMessageText(chatId, messageId, text, options = {}) {
     
     return bot('editMessageText', params).done(function(response) {
         if (response.ok) {
-            sys_log_Send(`Message edited in chat ${chatId}: ${text}`, "text-success");
+            // sys_log_Send(`Message edited in chat ${chatId}: ${text}`, "text-success");
         } else {
             sys_log_Send(`Failed to edit message in chat ${chatId}: ${response.description}`, "text-danger");
         }
