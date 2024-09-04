@@ -1,3 +1,4 @@
+var reportInterval = null;
 function sys_startBot() {
     botToken = $('#bot-token').val();
     if (!botToken) {
@@ -6,6 +7,10 @@ function sys_startBot() {
     }
     sys_log_Send("Starting...", "text-warning");
     bot_getMe().then(()=>{
+        sys_reportRunning(true);
+        reportInterval = setInterval(function() {
+            sys_reportRunning();
+        }, 60000);
         sys_log_Send('Bot started', 'text-success');
         localStorage.setItem('lastBotToken',botToken);
         isRunning = true;

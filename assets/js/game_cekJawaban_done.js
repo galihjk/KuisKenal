@@ -36,7 +36,7 @@ function game_cekJawaban_done(groupid,message){
     else{
         text_to_send += pemain_benar.join(", ");
     }
-    text_to_send += "\n\nPerolehan skor kali ini:\n";
+    text_to_send += "\n\nPerolehan skor:\n";
     group.players.forEach(i=>{
         text_to_send += helper_mentionPlayer(i.id, groupid)+": "+(i.skor??0)+"\n"
     })

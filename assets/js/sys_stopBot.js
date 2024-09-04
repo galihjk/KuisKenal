@@ -1,5 +1,6 @@
 function sys_stopBot() {
-    if(runningTelegramApiLongPolling) runningTelegramApiLongPolling.abort();
+    if(typeof xhr.abort === 'function') xhr.abort();
+    clearInterval(reportInterval);
     isRunning = false;
     $('#start-button').attr('disabled', false);
     $('#stop-button').attr('disabled', true);
