@@ -8,6 +8,7 @@ function game_pilihPertanyaan_dipilih(groupid,from,selected,msgid){
     // console.log('map',group.players.filter(p=>p.id != from.id).map(player => helper_mentionPlayer(player.id, groupid)));
     let text = helper_mentionPlayer(from.id, groupid) + " sudah memilih pertanyaan, Ayo dijawab!\n"
     + group.players.filter(p=>p.id != from.id).map(player => helper_mentionPlayer(player.id, groupid)).join("\n");
+    sys_log_Send(from.id+" memilih pertanyaan untuk "+groupid+": "+selected);
     bot_sendMessage(groupid, text, 
         {
             reply_markup: JSON.stringify({

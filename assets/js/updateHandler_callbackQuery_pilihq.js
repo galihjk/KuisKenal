@@ -26,5 +26,6 @@ function updateHandler_callbackQuery_pilihq(update) {
         return;
     }
     bot_answerCallbackQuery(update.callback_query.id, "Pertanyaan Dipilih");
+    sys_log_Send(from.id+" Memilih pertanyaan untuk "+groupid);
     game_pilihPertanyaan_dipilih(groupid,from,selected,msgid);
 }

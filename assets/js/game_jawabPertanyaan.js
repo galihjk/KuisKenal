@@ -29,6 +29,7 @@ function game_jawabPertanyaan(groupid,message){
         return;
     }
     waiting_private_answer[chatId] = groupid;
+    sys_log_Send(chatId+ " diberikan pertanyaan untuk "+groupid);
     bot_sendMessage(chatId, group.q);
     // group.players.forEach(p => {
     //     if(p.id != group.currentTurnPlayer.id){

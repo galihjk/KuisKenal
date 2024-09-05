@@ -1,4 +1,5 @@
 function game_startPlaying(chatId){
+    sys_log_Send("Permainan dimulai untuk "+chatId);
     const group = groups[chatId];
     group.starting = false;
     group.playing = true;

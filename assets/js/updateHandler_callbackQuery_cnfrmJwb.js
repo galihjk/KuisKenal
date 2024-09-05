@@ -38,6 +38,7 @@ function updateHandler_callbackQuery_cnfrmJwb(update) {
     }
     if(yakin){
         game_jawabPertanyaan_dijawab_yakin(groupid,message);
+        sys_log_Send(from.id+" Menjawab untuk "+groupid);
     }
     else{
         bot_deleteMessage(chatId,msgid);

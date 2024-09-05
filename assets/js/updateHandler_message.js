@@ -9,5 +9,12 @@ function updateHandler_message(update) {
         else if(waiting_private_answer[chatId]){
             game_jawabPertanyaan_dijawab(message);
         }
+        else{
+            sys_log_Send("incoming: "+chatId);
+            if(!groups[chatId] || 
+                (groups[chatId] && !groups[chatId].playing && !groups[chatId].starting)
+            )
+            bot_sendMessage(chatId, "/start@"+botUsername+" - Mulai");
+        }
     }
 }

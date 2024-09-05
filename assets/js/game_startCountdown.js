@@ -1,4 +1,6 @@
 function game_startCountdown(chatId) {
+    sys_log_Send("Permainan diinisiasi untuk "+chatId);
+
     const group = groups[chatId];
 
     const interval = setInterval(() => {
@@ -11,6 +13,7 @@ function game_startCountdown(chatId) {
                 group.starting = false;
                 bot_editMessageText(chatId, group.starting_message_id, `Permainan dibatalkan karena jumlah pemain kurang`);
                 bot_sendMessage(chatId, `Mohon maaf, ${group.players.map(player => helper_mentionPlayer(player.id, chatId)).join(", ")}. Permainan batal karena kurang peserta.`);
+                sys_log_Send("Permainan batal karena pemain kurang untuk "+chatId);
                 group.players = [];
             } else {    
                 bot_sendMessage(chatId, "Permainan dimulai!\n\n"+playerList+"\n\nBersiaplah!");

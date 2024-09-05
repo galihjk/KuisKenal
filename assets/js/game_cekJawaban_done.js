@@ -29,6 +29,7 @@ function game_cekJawaban_done(groupid,message){
             })
         }
     });
+    sys_log_Send(group.currentTurnPlayer.id,groupid+" sudah cek jawaban untuk "+groupid);
     group.cekjawaban = null;
     if(!pemain_benar.length){
         text_to_send += "TIDAK ADA";

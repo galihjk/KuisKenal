@@ -21,6 +21,7 @@ function game_pilihPertanyaan(groupid,from){
     }
     const questions = gamesys_getPertanyaan();
     group.questions = questions.map(q=>q.replace("[Nama Peserta]", helper_mentionPlayer(from.id, groupid)));
+    sys_log_Send(from.id+ " diberikan pilihan pertanyaan untuk "+groupid);
     bot_sendMessage(from.id, 
         "Pilih salah satu pertanyaan berikut:\n\n"
         + group.questions.map((q,k) => `${1+k}. ${q}`).join("\n\n")

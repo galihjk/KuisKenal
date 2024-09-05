@@ -6,6 +6,7 @@ function updateHandler_callbackQuery_join(update) {
     if (group.players.some(player => player.id === userId)) {
         bot_answerCallbackQuery(update.callback_query.id, "Anda sudah join.",true);
     } else {
+        sys_log_Send("Pemain "+update.callback_query.from.id+" mengikuti permainan di "+chatId);
         group.players.push(update.callback_query.from);
         bot_answerCallbackQuery(update.callback_query.id, "Anda berhasil join!",true);
         // Update message with new player list
