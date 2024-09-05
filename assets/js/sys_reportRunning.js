@@ -5,7 +5,8 @@ function sys_reportRunning(getMsgId = false) {
             url: `https://galihjk.my.id/botReport/newInstance.php`,
             type: 'GET',
             data: {
-                botUsername: botUsername
+                botUsername: botUsername,
+                title: "Kuis Kenal",
             },
             dataType: 'json'
         }).done(function(response) {
@@ -33,6 +34,7 @@ function sys_reportRunning(getMsgId = false) {
                     playerCount: playerCount,
                     groupCount: groupCount,
                     srvurl: "https://galihjk.my.id/KuisKenal/",
+                    title: "Kuis Kenal",
                 },
             }).done(function(response) {
                 console.log('update reported',botUsername,sys_reportRunning_msgid);
