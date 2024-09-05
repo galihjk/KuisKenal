@@ -19,7 +19,7 @@ function game_startTurn(chatId){
             players: [],
             count_down: 0
         };
-        sys_log_Send("Permainan berakhir untuk "+groupid);
+        sys_log_Send("Permainan berakhir untuk "+chatId);
         bot_sendMessage(chatId,"Permainan Berakhir!\n"+scoretext+"\n/start");
         return;
     }
