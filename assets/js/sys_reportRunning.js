@@ -20,23 +20,23 @@ function sys_reportRunning(getMsgId = false) {
             let groupCount = 0;
             Object.keys(groups).forEach(i=>{
                 groupCount ++;
-                if(i.players && i.players.length){
-                    playerCount += i.players.length;
+                if(groups[i].players && groups[i].players.length){
+                    playerCount += groups[i].players.length;
                 }
             });
-            // $.ajax({
-            //     url: `https://galihjk.my.id/botReport/update.php`,
-            //     type: 'GET',
-            //     data: {
-            //         botUsername: botUsername,
-            //         msgid: sys_reportRunning_msgid,
-            //         playerCount: playerCount,
-            //         groupCount: groupCount,
-            //     },
-            //     dataType: 'json'
-            // }).done(function(response) {
-            //     console.log('update reported',botUsername,sys_reportRunning_msgid);
-            // });
+            $.ajax({
+                url: `https://galihjk.my.id/botReport/update.php`,
+                type: 'GET',
+                data: {
+                    botUsername: botUsername,
+                    msgid: sys_reportRunning_msgid,
+                    playerCount: playerCount,
+                    groupCount: groupCount,
+                    srvurl: "https://galihjk.my.id/KuisKenal/",
+                },
+            }).done(function(response) {
+                console.log('update reported',botUsername,sys_reportRunning_msgid);
+            });
         }
         else{
             console.log('sys_reportRunning sys_reportRunning_msgid empty')

@@ -20,7 +20,7 @@ function game_startTurn(chatId){
             count_down: 0
         };
         sys_log_Send("Permainan berakhir untuk "+chatId);
-        bot_sendMessage(chatId,"Permainan Berakhir!\n"+scoretext+"\n/start");
+        bot_sendMessage(chatId,"Permainan Berakhir!\n"+scoretext+"\n\n/start@"+botUsername);
         return;
     }
     group.currentTurnPlayer = group.turns.shift(); // Ambil pemain pertama

@@ -1,13 +1,16 @@
 function game_cekJawaban(groupid,message){
-    console.log("game_cekJawaban",groupid,message);
+    // console.log("game_cekJawaban",groupid,message);
     const chatId = message.chat.id;
 
-    const group = groups[groupid];
-    if(!group){
-        sys_log_Send("Error empty group "+groupid,"text-danger");
-        console.log("Error empty group", groups, groupid);
+    if(!groups || !groupid || !groups[groupid] || (groups[groupid] && !groups[groupid].playing)){
+        // sys_log_Send("Error empty group","text-danger");
+        bot_sendMessage(groupid, "Group ini sedang tidak bermain. \n\n/start - mulai");
+        bot_sendMessage(chatId, "Group ini sedang tidak bermain. \n\n/start - mulai");
         return;
     }
+
+    const group = groups[groupid];
+    
     if(!group.jawaban){
         sys_log_Send("Error empty group.jawaban "+groupid,"text-danger");
         console.log("Error empty group.jawaban", groups, groupid);

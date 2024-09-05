@@ -1,6 +1,6 @@
 function game_pilihPertanyaan(groupid,from){
     if(!groups || !groupid || !groups[groupid]){
-        sys_log_Send("Error empty group","text-danger");
+        // sys_log_Send("Error empty group","text-danger");
         bot_sendMessage(groupid, "Group ini sedang tidak bermain. \n\n/start - mulai");
         bot_sendMessage(from.id, "Group ini sedang tidak bermain. \n\n/start - mulai");
         return;

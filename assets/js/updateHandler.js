@@ -33,5 +33,11 @@ function updateHandler(update) {
     } else if (update.callback_query) {
         updateHandler_callbackQuery(update);
     }
+    else if (update.my_chat_member && update.my_chat_member.chat && update.my_chat_member.chat.id){
+        const groupid = update.my_chat_member.chat.id;
+        bot_sendMessage(groupid, "/start@"+botUsername+" - Mulai").then(()=>{        
+            sys_log_Send("Bot added to group "+groupid, "text-info");
+        });
+    }
     // Tambahkan handler untuk tipe update lain jika diperlukan
 }

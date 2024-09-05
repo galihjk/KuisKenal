@@ -11,5 +11,5 @@ function helper_mentionPlayer(userid, groupid){
         sys_log_Send("error player group "+userid);
         return;
     }
-    return `<a href='tg://user?id=${userid}'>${player.first_name}</a>`
+    return `<a href='tg://user?id=${userid}'>${player.first_name.replaceAll("<","&lt;")}</a>`
 }
