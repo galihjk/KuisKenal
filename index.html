@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Kenal</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Test</h1>
+        <!-- <h1 class="mt-5">Kuis Kenal</h1> -->
+        <div id="bot-token-section" class="mb-4">
+            <input type="text" id="bot-token" class="form-control" placeholder="Masukkan token bot">
+            <button id="start-button" class="btn btn-success mt-2">Start</button>
+            <button id="stop-button" class="btn btn-danger mt-2" disabled>Stop</button>
+        </div>
+        <div id="status-section" class="mb-4">
+            <h4>Status: <span id="status-label" class="badge bg-secondary">Stopped</span></h4>
+        </div>
+        <input type="checkbox" id="virtualPlayer">
+        <div id="log-section">
+            <h4>Log:</h4>
+            <div id="log-container" class="border p-2" style="height: 300px; overflow-y: auto;">
+                <!-- Logs will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/app.js?v=1724285613"></script>
+<script src="assets/js/bot.js?v=1724134716"></script>
+<script src="assets/js/bot_answerCallbackQuery.js?v=1724719481"></script>
+<script src="assets/js/bot_deleteMessage.js?v=1724740936"></script>
+<script src="assets/js/bot_editMessageText.js?v=1724805037"></script>
+<script src="assets/js/bot_getMe.js?v=1724117808"></script>
+<script src="assets/js/bot_sendMessage.js?v=1724805037"></script>
+<script src="assets/js/gamesys_getPertanyaan.js?v=1724738348"></script>
+<script src="assets/js/game_cekJawaban.js?v=1724806060"></script>
+<script src="assets/js/game_cekJawaban_dipilih.js?v=1724806051"></script>
+<script src="assets/js/game_cekJawaban_done.js?v=1724808901"></script>
+<script src="assets/js/game_jawabPertanyaan.js?v=1724723726"></script>
+<script src="assets/js/game_jawabPertanyaan_dijawab.js?v=1724717750"></script>
+<script src="assets/js/game_jawabPertanyaan_dijawab_yakin.js?v=1724723930"></script>
+<script src="assets/js/game_pilihPertanyaan.js?v=1724204703"></script>
+<script src="assets/js/game_pilihPertanyaan_dipilih.js?v=1724723673"></script>
+<script src="assets/js/game_startCountdown.js?v=1724808423"></script>
+<script src="assets/js/game_startPlaying.js?v=1724807955"></script>
+<script src="assets/js/game_startTurn.js?v=1724808674"></script>
+<script src="assets/js/helper_mentionPlayer.js?v=1724202568"></script>
+<script src="assets/js/sys_log_Send.js?v=1724111990"></script>
+<script src="assets/js/sys_log_UpdateDisplay.js?v=1724111990"></script>
+<script src="assets/js/sys_startBot.js?v=1724113577"></script>
+<script src="assets/js/sys_startLongPolling.js?v=1724722512"></script>
+<script src="assets/js/sys_stopBot.js?v=1724113446"></script>
+<script src="assets/js/updateHandler.js?v=1724741771"></script>
+<script src="assets/js/updateHandler_callbackQuery.js?v=1724740022"></script>
+<script src="assets/js/updateHandler_callbackQuery_checkjwb.js?v=1724804797"></script>
+<script src="assets/js/updateHandler_callbackQuery_cnfrmJwb.js?v=1724720999"></script>
+<script src="assets/js/updateHandler_callbackQuery_extend.js?v=1724203339"></script>
+<script src="assets/js/updateHandler_callbackQuery_join.js?v=1724203339"></script>
+<script src="assets/js/updateHandler_callbackQuery_pilihq.js?v=1724200732"></script>
+<script src="assets/js/updateHandler_message.js?v=1724286030"></script>
+<script src="assets/js/updateHandler_message_start.js?v=1724722951"></script>
+</body>
+</html>

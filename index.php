@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akrab Game: Kenali Temanmu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Kuis Kenal</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Akrab Game: Kenali Temanmu</h1>
-        <div class="mb-3">
-            <label for="botToken" class="form-label">Bot Token</label>
-            <input type="text" class="form-control" id="botToken" placeholder="Enter your bot token">
+    <div class="container">
+        <h1 class="mt-5">Test</h1>
+        <!-- <h1 class="mt-5">Kuis Kenal</h1> -->
+        <div id="bot-token-section" class="mb-4">
+            <input type="text" id="bot-token" class="form-control" placeholder="Masukkan token bot">
+            <button id="start-button" class="btn btn-success mt-2">Start</button>
+            <button id="stop-button" class="btn btn-danger mt-2" disabled>Stop</button>
         </div>
-        <div class="mb-3">
-            <span>Status: </span><strong id="status" class="text-secondary">Not Started</strong>
+        <div id="status-section" class="mb-4">
+            <h4>Status: <span id="status-label" class="badge bg-secondary">Stopped</span></h4>
         </div>
-        <button id="startServer" class="btn btn-primary">Start Server</button>
-        <button id="stopServer" class="btn btn-danger" disabled>Stop Server</button>
-        <div class="mt-4">
-            <h3>Log</h3>
-            <ul id="messages" class="list-group"></ul>
+        <input type="checkbox" id="virtualPlayer">
+        <div id="log-section">
+            <h4>Log:</h4>
+            <div id="log-container" class="border p-2" style="height: 300px; overflow-y: auto;">
+                <!-- Logs will be shown here -->
+            </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const functionScripts = [<?php 
-        foreach(scandir("js/functions") as $f){
-            if(pathinfo($f, PATHINFO_EXTENSION) !== 'js') continue;
-            echo "'js/functions/$f',";
+    <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+        $folderPath = 'assets/js/';
+        if ($handle = opendir($folderPath)) {
+            while (false !== ($file = readdir($handle))) {
+                // Mengecek apakah file berakhiran .js
+                if (pathinfo($file, PATHINFO_EXTENSION) == 'js') {
+                    // Mendapatkan waktu modifikasi file
+                    $modifiedTime = filemtime($folderPath . $file);
+                    // Menambahkan versi ke dalam URL skrip
+                    $versionedFile = $folderPath . $file . '?v=' . $modifiedTime;
+                    // Menyisipkan tag script
+                    echo '<script src="' . $versionedFile . '"></script>' . PHP_EOL;
+                }
+            }
+            // Menutup folder setelah selesai
+            closedir($handle);
         }
-        ?>];
-    </script>
-    <script src="js/app.js?v=<?php echo time(); ?>"></script>
+    ?>
 </body>
 </html>
